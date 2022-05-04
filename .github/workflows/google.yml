@@ -18,7 +18,7 @@ on:
       - main
 
 env:
-  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  PROJECT_ID: website-gcp-terra
   GAR_LOCATION: us-central1 # TODO: update region of the Artifact Registry
   GKE_CLUSTER: diego-cluster  # TODO: update to cluster name
   GKE_ZONE: us-central1   # TODO: update to cluster zone
@@ -60,7 +60,7 @@ jobs:
     # Build the Docker image
     - name: build
       #run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-      run: docker build -t gcr.io/${{ env.PROJECT_ID }}/pythonappsimpleimage:latest .
+      run: docker build -t gcr.io/${{ env.project_id }}/pythonappsimpleimage:latest .
 
   # # Publish the Docker image
   #   # Push the Docker image to Google Artifact Registry
