@@ -47,6 +47,7 @@ jobs:
       with:
         credentials_json: '${{ secrets.CREDENTIALS_GCP }}'
         registry: gcr.io
+        export_default_credentials: true
 
     # - name: Docker configuration
     #   run: |-
