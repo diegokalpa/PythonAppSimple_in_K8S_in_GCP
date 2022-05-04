@@ -56,6 +56,7 @@ jobs:
     - name: Set up GKE credentials
       uses: google-github-actions/get-gke-credentials@v0
       with:
+        credentials_json: '${{ secrets.CREDENTIALS_GCP }}'
         cluster_name: ${{ env.GKE_CLUSTER }}
         location: ${{ env.GKE_ZONE }}
         registry: gcr.io
