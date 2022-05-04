@@ -24,6 +24,7 @@ env:
   GKE_ZONE: us-central1   # TODO: update to cluster zone
   DEPLOYMENT_NAME: gke-test # TODO: update to deployment name
   REPOSITORY: gcr.io # TODO: update to Artifact Registry docker repository 
+  IMAGE_NAME: pythonappsimpleimage
   IMAGE: static-site
 
 jobs:
@@ -58,13 +59,14 @@ jobs:
 
     # Build the Docker image
     - name: build
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      #run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/{env.IMAGE_NAME}:latest .
 
-  # Publish the Docker image
-    # Push the Docker image to Google Artifact Registry
-    - name: Publish
-      run: |-
-        docker push my-image-name:latest
+  # # Publish the Docker image
+  #   # Push the Docker image to Google Artifact Registry
+  #   - name: Publish
+  #     run: |-
+  #       docker push my-image-name:latest
 
     # - name: Push Docker Image to Container Registry (GCR)
     #   env:
