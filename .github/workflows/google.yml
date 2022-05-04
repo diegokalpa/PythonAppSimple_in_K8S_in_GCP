@@ -60,7 +60,7 @@ jobs:
     # Build the Docker image
     - name: build
       #run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-      run: docker build -t gcr.io/${{ env.project_id }}/pythonappsimpleimage:latest .
+      run: docker build -t gcr.io/$PROJECT_ID/$IMAGE_NAME:latest .
 
   # # Publish the Docker image
   #   # Push the Docker image to Google Artifact Registry
