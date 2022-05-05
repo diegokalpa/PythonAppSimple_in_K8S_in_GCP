@@ -22,7 +22,7 @@ env:
   #GAR_LOCATION: us-central1 # TODO: update region of the Artifact Registry
   GKE_CLUSTER: diego-cluster  # TODO: update to cluster name
   GKE_ZONE: us-central1   # TODO: update to cluster zone
-  DEPLOYMENT_NAME: gke-pythonimagesimple # TODO: update to deployment name
+  DEPLOYMENT_NAME: pythonappsimple # TODO: update to deployment name
   REPOSITORY: gcr.io # TODO: update to Artifact Registry docker repository 
   IMAGE_NAME: pythonappsimpleimage
   IMAGE: static-site
