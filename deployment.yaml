@@ -18,7 +18,7 @@ spec:
         app: pythonappsimple
     spec:
       containers:
-      - name: pythonappsimple_container
+      - name: pythonappsimple-container
         image: gcr.io/website-gcp-terra/pythonappsimpleimage
         # ports:
         # - containerPort: 8080
