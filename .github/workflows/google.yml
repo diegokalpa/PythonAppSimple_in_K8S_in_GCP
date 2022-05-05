@@ -18,7 +18,7 @@ env:
   GKE_ZONE: us-central1
   DEPLOYMENT_NAME: pythonappsimple
   REPOSITORY: gcr.iosdsd
-
+  IMAGE_NAME: pythonappsimpleimage
 jobs:
   setup-build-publish-deploy:
     name: Setup, Build, Publish, and Deploy
