@@ -19,13 +19,12 @@ on:
 
 env:
   PROJECT_ID: website-gcp-terra
-  #GAR_LOCATION: us-central1 # TODO: update region of the Artifact Registry
   GKE_CLUSTER: diego-cluster  # TODO: update to cluster name
   GKE_ZONE: us-central1   # TODO: update to cluster zone
   DEPLOYMENT_NAME: pythonappsimple # TODO: update to deployment name
   REPOSITORY: gcr.io # TODO: update to Artifact Registry docker repository 
   IMAGE_NAME: pythonappsimpleimage
-  IMAGE: static-site
+  #IMAGE: static-site
 
 jobs:
   setup-build-publish-deploy:
@@ -41,7 +40,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    # Alternative option - authentication via credentials json  
+  #authentication via credentials json  
     - uses: google-github-actions/setup-gcloud@v0
       with:
         service_account_key: ${{ secrets.CREDENTIALS_GCP }}
@@ -61,11 +60,6 @@ jobs:
     - name: Push to Google Container Registry
       run:  docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
 
-  # # Publish the Docker image
-  #   - name: Publish
-  #     run: |-
-  #       docker push my-image-name:latest
-
   # Deploy sample image to the GKE cluster 
     - name: Deploy
       run: |-
@@ -73,18 +67,3 @@ jobs:
         kubectl apply -f deployment.yaml
         kubectl rollout status deployment/$DEPLOYMENT_NAME
         kubectl get services -o wide
-
-
-    # # Set up kustomize
-    # - name: Set up Kustomize
-    #   run: |-
-    #     curl -sfLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
-    #     chmod u+x ./kustomize
-    # # Deploy the Docker image to the GKE cluster
-    # - name: Deploy
-    #   run: |-
-    #     # replacing the image name in the k8s template
-    #     ./kustomize edit set image LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA
-    #     ./kustomize build . | kubectl apply -f -
-    #     kubectl rollout status deployment/$DEPLOYMENT_NAME
-    #     kubectl get services -o wide
