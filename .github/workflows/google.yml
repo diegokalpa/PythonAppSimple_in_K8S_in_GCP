@@ -61,10 +61,10 @@ jobs:
     - name: Push to Google Container Registry
       run:  docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
 
-  # Publish the Docker image
-    - name: Publish
-      run: |-
-        docker push my-image-name:latest
+  # # Publish the Docker image
+  #   - name: Publish
+  #     run: |-
+  #       docker push my-image-name:latest
 
   # Deploy sample image to the GKE cluster 
     - name: Deploy
