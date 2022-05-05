@@ -69,6 +69,7 @@ jobs:
   # Deploy sample image to the GKE cluster 
     - name: Deploy
       run: |-
+        gcloud container clusters get-credentials "diego-cluster"
         kubectl apply -f deployment.yaml
         kubectl rollout status deployment/$DEPLOYMENT_NAME
         kubectl get services -o wide
