@@ -49,19 +49,11 @@ jobs:
         registry: gcr.io
         export_default_credentials: true
 
-    # - name: Docker configuration
-    #   run: |-
-    #     echo ${{steps.auth.outputs.access_token}} | docker login -u oauth2accesstoken --password-stdin https://$GAR_LOCATION-docker.pkg.dev
-    # Get the GKE credentials so we can deploy to the cluster
-    # - name: Set up GKE credentials
-    #   uses: google-github-actions/get-gke-credentials@v0
-    #   with:
-    #     cluster_name: ${{ env.GKE_CLUSTER }}
-    #     location: ${{ env.GKE_ZONE }}
+    - name: Configure docker for GCP
+      run: gcloud auth configure-docker
 
     # Build the Docker image
     - name: build
-      #run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
       run: docker build -t gcr.io/$PROJECT_ID/$IMAGE_NAME:latest .
     
     # Push Image to GCR
